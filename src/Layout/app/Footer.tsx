@@ -108,7 +108,7 @@ const Footer = () => {
         className="text-center p-3"
         style={{ backgroundColor: "rgba(0, 0, 0, 0.2)" }}
       >
-        © 2023 Copyright:
+        © 2023 Copyright:Moaz Dawalibi
         <a className="text-white" href="https://ecommerce-structure-six.vercel.app/">
           https://ecommerce-structure.vercel.app   
               </a>

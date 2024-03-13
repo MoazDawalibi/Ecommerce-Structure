@@ -9,7 +9,7 @@ const TopBar = () => {
   return (
     
        <header className='Header'>
-     <Link to={'/'} >  <h1>Ecommerce-Structure</h1> </Link>
+     <Link to={'/'} >  <h1>Moaz Dawalibi</h1> </Link>
       <nav>
         <div className="Menu_Group">
           <Theme/>
