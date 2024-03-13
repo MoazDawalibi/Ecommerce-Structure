@@ -1,0 +1,54 @@
+
+
+   @media screen and (max-width: 600px) {
+                    .Menu_Group,.MidBar_Left,.MidBar_Right,.NavMenus,.BottomBar{
+                        display: none;
+                    }
+                 .MediaMenu{
+                    display: block;
+
+                 }
+                    
+                    .FnBar{
+                        display: flex;
+                        flex-direction: row-reverse;
+                        align-items: center;
+                        justify-content: center;
+                        // padding-inline: 10px;
+.MidBar{
+    min-width: 100%;
+    gap: 10%;
+    padding-inline: 6%;
+    align-items: flex-start;
+    .MenuButton{
+        background: var(--primary);
+    }
+
+    
+                    }
+                    }
+                    
+   }
+      @media screen and (max-width: 400px) {
+               
+                 
+                    
+                    .FnBar{
+                        display: flex;
+                        flex-direction: column;
+.BottomBar{
+
+
+                    }
+                    }
+                 .ViewCartViewCart{
+                    display: inline !important;
+                 
+                 }
+                 .DropdownMenu{
+                    
+                 }
+
+               
+                    
+   }

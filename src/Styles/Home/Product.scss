@@ -1,0 +1,107 @@
+.Product_Info{
+    width: 100%;
+    padding: 2vw 0vw;
+    display: flex;
+    justify-content: center;
+    max-height: 350px;
+        h6,h3{
+            text-wrap: nowrap;
+
+        }
+    .Product_Left{
+            img{
+                width: 40vw;
+                height: 300px;
+                mix-blend-mode: multiply;
+                object-fit: cover;
+                // transform: translateY(-11%);
+            }
+    }
+    .Product_Right{
+        display: flex; flex-direction: column; gap: 5px;
+        width: 40vw;
+        >div{
+            display: flex; gap: 10px; align-items: center;
+        }
+            .Product_Description{
+                display: flex; align-items: self-start;
+                p{
+                    max-width: 50%;
+                  
+                }
+                .ant-collapse-header{
+                    padding: 0 !important;
+                }
+                .ant-collapse-content-box{
+                    transform: translate(10px ,-12px);
+                }
+            }
+            .Price{
+                color: var(--secondary);
+            }
+    }
+    button{
+        background: var(--secondary);
+        font-weight: bold;
+        max-width: 50%;
+    }
+    
+}
+
+@media screen and (max-width: 650px) {
+
+    .Product_Info{
+        width: 100%;
+        padding: 2vw 0vw;
+        display: flex;
+        justify-content: center;
+        max-height: fit-content;
+        flex-wrap: wrap;
+        margin-bottom: 40px;
+            h6,h3{
+                text-wrap: nowrap;
+    
+            }
+        .Product_Left{
+                img{
+                    min-width: 400px;
+                    width: 50vw;
+                    height: 300px;
+                    mix-blend-mode: multiply;
+                    object-fit: cover;
+                    // transform: translateY(-11%);
+                }
+        }
+        .Product_Right{
+            display: flex; flex-direction: column; gap: 5px;
+            justify-content: center; align-items: center;
+            width: 100%;
+            >div{
+                display: flex; gap: 10px; align-items: center;
+            }
+                .Product_Description{
+                    display: flex; align-items: self-start;
+                    p{
+                        max-width: 50%;
+                      
+                    }
+                    .ant-collapse-header{
+                        padding: 0 !important;
+                    }
+                    .ant-collapse-content-box{
+                        transform: translate(10px ,-12px);
+                    }
+                }
+                .Price{
+                    color: var(--secondary);
+                }
+        }
+        button{
+            background: var(--secondary);
+            font-weight: bold;
+            max-width: 50%;
+        }
+        
+    }
+         
+}
