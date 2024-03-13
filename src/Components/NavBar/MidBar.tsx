@@ -1,4 +1,3 @@
-import KarimLogo from '../../Layout/app/KarimLogo'
 import InputAutoComplete from './InputAutoComplete'
 import { Link } from 'react-router-dom';
 import ViewCart from './ViewCart';
@@ -11,8 +10,7 @@ const MidBar = () => {
   return (
     <div className="MidBar">
         <div className='MidBar_Left'>
-            
-           <KarimLogo/>
+            <img src='/Layout/MoazLogoBlack.svg'  width={70}/>
         </div>
         <div className='MidBar_Mid'>
             <InputAutoComplete/>
