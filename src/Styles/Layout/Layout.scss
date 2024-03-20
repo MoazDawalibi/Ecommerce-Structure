@@ -1,6 +1,23 @@
 .Footer{
     width: 100%;
     margin-top: 30px;
+    .Footer_social{
+        gap: 20px;
+        .Media_Icon{
+            margin-bottom: 0 ;
+            display: flex; 
+            justify-content: start;
+            padding-left: 0 !important;       
+            gap: 20px;
+            svg{
+                cursor: pointer;
+                
+            }
+            li{
+                all: unset;
+            }
+        }
+    }
     .Footer_Header{
         background-color: var(--secondary);
         color: var(--bg);
@@ -13,8 +30,6 @@
         background-color: var(--primary);
         color: var(--bg);
         font-size: 16px;
-
-
     }
 }
 .Layout_Body{
@@ -45,3 +60,9 @@
     background: var(--secondary);
     color: var(--bg);
    }
+
+@media screen and (max-width:770px) {
+    .Footer_social{
+        @include Flex ;
+    }
+}

@@ -1,23 +1,27 @@
 import React, { useState } from 'react'
 import { Button, Rate, Result,Space } from 'antd';
+import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const ReviewBody = ({ setViewPage }: any) => {
-
+    const {t} = useTranslation();
    const [value, setValue] = useState(3);
-const desc = ['ولا حمار زبط', 'bad', 'normal', 'good', 'عراسي'];
+const desc = ['very bad', 'bad', 'normal', 'good', 'perfect'];
 
   return (
     <div className="ReviewBody">
     <Result
     status="success"
-    title="Successfully Purchased Cloud Server ECS!"
-    subTitle="Order number: 2017182818828182881 Cloud server configuration takes 1-5 minutes, please wait."
+    title={t("Successfully Purchased Order!")}
+    subTitle={t("Thank You for Try  and hope to make another one")}
     extra={[
-      <Rate tooltips={desc}  className='Rate' onChange={setValue} value={value} />
+      // <Rate tooltips={desc}  className='Rate' onChange={setValue} value={value} />
       ,
-      <Button type="primary" key="console">
-Buy Again    
-  </Button>,
+      <Link to="/">
+        <Button type="primary" key="console">
+          {t("Buy Again")}   
+        </Button>
+      </Link>
     ]}
   />
      

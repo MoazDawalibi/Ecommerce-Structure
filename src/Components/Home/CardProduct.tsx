@@ -1,61 +1,88 @@
 import React, { useState } from 'react';
 import {  Rate, Skeleton, Tooltip } from 'antd';
 import { EyeFilled, HeartFilled, PlusOutlined } from '@ant-design/icons';
-import { TProduct } from '../../Layout/app/Types';
-import { Currency } from '../../Layout/app/Const';
+import { Currency, UserImageURL } from '../../Layout/app/Const';
 import useLoadingState from '../../Hooks/useLoadingState';
 import { Link } from 'react-router-dom';
+import { BaseURL_IMAGE } from '../../api/config';
+import useImageError from '../../Hooks/useImageError';
+import { useTranslation } from 'react-i18next';
+import { useAddToCart } from '../../api/cart';
+import { toast } from 'react-toastify';
+import { useAddToFavourite, useRemoveFromFav } from '../../api/wishlist';
+import { PiHeartBreakFill } from "react-icons/pi";
+import { useAuth } from '../../Hooks/useAuth';
+import {useNavigate} from  'react-router-dom';
+import { productsArray } from '../../Backend/Products';
 
-
-interface CardProductProps {
-  item: TProduct;
-}
-
-const CardProduct: React.FC<CardProductProps> = ({ item }) => {
+const CardProduct = (
+  { item }:any
+  ) => {
   const [loading, resetLoading] = useLoadingState(true, 2000);
 
-
-
+  const navigate = useNavigate()
+    const {isAuthenticated} = useAuth()
+    const {i18n, t} = useTranslation()
+    const {mutate} = useAddToCart()
+    const {mutate:mutateAddFav} = useAddToFavourite()
+    const {mutate:mutateRemoveFav} = useRemoveFromFav()
+  const itemm = productsArray;
   return (
           <Skeleton className='unset' loading={loading} active >
-                    <div key={item?.id} className='Card_Product'>
+                    <div key={itemm?.id} className='Card_Product'>
 
-            {/* <Card className='unset' loading={loading}> */}
-              <div className='Card_Product_Top'>
-                <span className='Left'>{item?.off}% off</span>
+              <div className='Card_Product_Top' onClick={()=>navigate(`/product/${itemm.id}`)}>
+                <span className='Left'>{itemm?.category?.category_translations?.at(0)?.name}</span>
                 <span className='Right'>
-               <Link to={`/product/${item.id}`}>
-            <EyeFilled />
-          </Link>
-                  <HeartFilled />
+               <Link to={`/product/${itemm.id}`}>
+                  <EyeFilled className='SingleOrder_icon' />
+                </Link>
+                  <HeartFilled className='AddFav_icon' onClick={()=>{mutateAddFav({
+                          product_id:itemm?.id,
+                      })
+                      toast.success(t("added to favourite"))
+                      }}/>
+                 <PiHeartBreakFill className='RemoveFav_icon' onClick={()=>{mutateRemoveFav({
+                          product_id:itemm?.id,
+                      })
+                      toast.success(t("Removed From Favourite"))
+                      }}/>     
                 </span>
               </div>
-              <div className='Card_Product_Mid'>
-                <img src={item?.img} alt={item?.name} width="100%" height="60%" />
+              <div className='Card_Product_Mid' onClick={()=>navigate(`/product/${itemm.id}`)}>
+                <img src={ BaseURL_IMAGE +itemm?.product_main_image|| UserImageURL} onError={useImageError} alt={itemm?.name} width="100%" height="60%" />
               </div>
-              <div className='Card_Product_Bottom'>
-                <div>{item?.name}</div>
-                <div>
-                  <Rate allowHalf disabled defaultValue={item?.rate} />
+              <div className='Card_Product_Bottom'  >
+                <div className='product_name' onClick={()=>navigate(`/product/${itemm.id}`)}>{itemm?.product_translations?.at(0)?.name}</div>
+                <div className='rate'>
+                  <Rate allowHalf disabled defaultValue={itemm?.rate} />
                 </div>
                 <span>
                   <div>
-                    <strong>
-                      {item?.price} {Currency}
+                    <strong onClick={()=>navigate(`/product/${itemm.id}`)}> 
+                      {itemm?.product_price} {Currency}
                     </strong>
                     <small>
-                      {item?.old_price}
+                      {Number(itemm?.product_price) + Number(itemm?.product_price) * 10 / 100}
                       {Currency}
                     </small>
                   </div>
-                  <div className='AddProduct'>
-                    <Tooltip title="Add To Cart">
+                  {
+                    isAuthenticated&&
+                  <div className='AddProduct' onClick={()=>{
+                    mutate({
+                      product_id:itemm?.id,
+                      quantity:1
+                    })
+                    toast.success('added to cart')
+                  }}>
+                    <Tooltip title={t("Add To Cart")}>
                       <PlusOutlined />
                     </Tooltip>
                   </div>
+                } 
                 </span>
               </div>
-            {/* </Card> */}
             </div>
 
           </Skeleton>

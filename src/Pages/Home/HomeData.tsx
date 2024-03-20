@@ -11,7 +11,7 @@ import { IoIosFlash } from "react-icons/io"
     rate:4.5,
     price:200,
     old_price:250,
-    brand : "karim",
+    brand : "Moaz",
     description:"Wireless Bluetooth HeadsetFM Frequency Response: 87.5 108 MHz Feature: FM Radio, Card Supported (Micro SD / TF)Made in China",
     type:"Neck Sweater",
     count:1,

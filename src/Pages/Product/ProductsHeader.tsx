@@ -20,19 +20,18 @@ const ProductsHeader = ({style,setstyle}:any) => {
 
               <WithDrawer
               className="showfillter"
-    title="ProductsFilter"
-      button={ 
-          <div className="Cart_Icon">
-          <BsFillTerminalFill  />
-
-          </div>
-    }
-    >
+              title="ProductsFilter"
+                button={ 
+                    <div className="Cart_Icon">
+                      <span>Filter:</span><BsFillTerminalFill  />
+                    </div>
+              }
+              >
  <ProductsFilter/>
     
  
     </WithDrawer>
-          <div className='Shortby'>Short by:</div>
+          <div className='Shortby'>Sort by:</div>
           <div>
             <Select
               defaultValue="Relevance"

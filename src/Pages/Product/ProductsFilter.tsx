@@ -32,6 +32,20 @@ const desc = ['ولا حمار زبط', 'bad', 'normal', 'good', 'عراسي'];
       onChange={handleChange}
       options={[  { value: 'jack', label: 'Jack' }, ]} />
        </div>
+       <div className='Shortby' style={{marginTop:"10px",width:"100%"}} >Sort by:</div>
+
+       <div style={{width:"100%"}}>
+            <Select
+              defaultValue="Relevance"
+              style={{ width: "100%" }}
+              onChange={handleChange}
+              options={[
+                { value: 'Relevance', label: 'Relevance' },
+                { value: 'Date', label: 'Date' },
+                { value: 'Price To Low', label: 'Price To Low ' },
+                { value: 'Price To High', label: 'Price To High' },
+              ]}
+            /> </div>
       <div> Brand </div>
       <div>
         <Radio.Group onChange={onChange} value={value}>

@@ -1,4 +1,5 @@
 import React from 'react'
+import { BsFacebook, BsGoogle, BsInstagram } from 'react-icons/bs'
 
 const Footer = () => {
   return (
@@ -15,7 +16,7 @@ const Footer = () => {
         className=" Footer_Header"
       
       >
-        <div className="me-5 ">
+        <div className="">
           <span>Get connected with us on social networks:</span>
         </div>
     
@@ -42,12 +43,20 @@ const Footer = () => {
             {/* Grid column */}
             <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
               {/* Links */}
-              <h6 className="text-uppercase fw-bold">Products</h6>
+              <h6 className="text-uppercase fw-bold">Social Media</h6>
               <hr
                 className="mb-4 mt-0 d-inline-block mx-auto"
                 style={{ width: 60, backgroundColor: "#7c4dff", height: 2 }}
               />
-              <p>
+              <div className='Footer_social'>
+                <ul className='Media_Icon'>
+                  <li><a href="/"><BsFacebook/></a></li>
+                  <li><a href="/about"><BsGoogle/></a></li>
+                  <li><a href="/about"><BsInstagram/></a></li>
+                </ul>
+              </div>
+
+              {/* <p>
                 <a href="#!" className="text-white">
                   MDBootstrap
                 </a>
@@ -56,7 +65,7 @@ const Footer = () => {
                 <a href="#!" className="text-white">
                   MDWordPress
                 </a>
-              </p>
+              </p> */}
             
             </div>
             {/* Grid column */}

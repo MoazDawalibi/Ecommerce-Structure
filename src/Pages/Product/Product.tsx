@@ -46,17 +46,6 @@ const OneProduct = () => {
 
 
           </div>
-
-          <div>
-
-            <h6>Color  : </h6>
-            <Radio.Group onChange={onChange} value={value}>
-              <Radio value={1}> <ColorPicker defaultValue="red" disabled /> </Radio>
-              <Radio value={2}><ColorPicker defaultValue="green" disabled /> </Radio>
-              <Radio value={3}><ColorPicker defaultValue="blue" disabled /> </Radio>
-
-            </Radio.Group>
-          </div>
           <div className='Product_Description'>
             <h6>Description  : </h6>
             <Collapse ghost items={items} />
@@ -68,9 +57,14 @@ const OneProduct = () => {
           </div>
           <div>
           </div>
-          <Button type="primary" block>
-            Add to Cart
-          </Button>
+          <div className='buttons_container'>
+            <Button type="primary" block>
+              Add to Cart
+            </Button>
+            <Button type="primary" block>
+              Add to Favourite
+            </Button>
+          </div>
         </div>
       </div>
       <ProductSection data={ProductSectionData} />

@@ -1,11 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { BsFacebook, BsGoogle, BsInstagram } from 'react-icons/bs'
 import Theme from '../Utils/Theme'
 import Translate from '../Utils/Translate'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { MenuFoldOutlined } from '@ant-design/icons'
+import { TOKEN_KEY } from '../../config/AppKey'
 
 const TopBar = () => {
+
+  const [isAuth , setIsAuth] = useState<any>(localStorage.getItem(TOKEN_KEY))
+  const navigate = useNavigate()
+
   return (
     
        <header className='Header'>
@@ -17,10 +22,22 @@ const TopBar = () => {
         </div>
 
         <ul className='Media_Icon'>
-          <li><a href="/"><BsFacebook/></a></li>
-          <li><a href="/about"><BsGoogle/></a></li>
-          <li><a href="/about"><BsInstagram/></a></li>
+        {
+               ! isAuth ?
+                <>
+                  {/* <Link className='Link' to={'/auth'} onClick={()=>navigate('/auth' )}>  <h1>Register</h1> </Link> */}
+                   <Link className='Link' to={'/auth'}  onClick={()=>navigate('/auth' )}>  <h1>Login</h1> </Link>
+              
+                </>:
+                <>
 
+                <h1 onClick={()=>{
+                  localStorage.removeItem(TOKEN_KEY)
+                  setIsAuth(false)
+                }}>Logout</h1>
+                </>
+
+              }
         </ul>
         <div className='MenuNav'>
 

@@ -10,11 +10,10 @@
         }
     .Product_Left{
             img{
-                width: 40vw;
+                width: 30vw;
                 height: 300px;
                 mix-blend-mode: multiply;
                 object-fit: cover;
-                // transform: translateY(-11%);
             }
     }
     .Product_Right{
@@ -40,6 +39,10 @@
                 color: var(--secondary);
             }
     }
+    .buttons_container{
+        display: flex;justify-content: space-between;
+        width: 100%;
+    }
     button{
         background: var(--secondary);
         font-weight: bold;
@@ -64,7 +67,7 @@
             }
         .Product_Left{
                 img{
-                    min-width: 400px;
+                    // min-width: 400px;
                     width: 50vw;
                     height: 300px;
                     mix-blend-mode: multiply;
@@ -74,15 +77,16 @@
         }
         .Product_Right{
             display: flex; flex-direction: column; gap: 5px;
-            justify-content: center; align-items: center;
-            width: 100%;
+            justify-content: start; align-items: start;
+            margin-inline: auto;
+            width: 92%;
             >div{
                 display: flex; gap: 10px; align-items: center;
             }
                 .Product_Description{
                     display: flex; align-items: self-start;
                     p{
-                        max-width: 50%;
+                        max-width: 100%;
                       
                     }
                     .ant-collapse-header{
@@ -96,10 +100,15 @@
                     color: var(--secondary);
                 }
         }
+        .buttons_container{
+            display: flex;justify-content: space-between;
+            width: 100%;
+        }
         button{
             background: var(--secondary);
             font-weight: bold;
-            max-width: 50%;
+            max-width: 46%;
+            font-size: 10px;
         }
         
     }

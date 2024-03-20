@@ -1,14 +1,37 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import PaymentForm from './PaymentForm';
 import { Button, Divider, Input, Radio, Space } from 'antd';
+import { useCheckout } from '../../../api/cart';
+import { useFormikContext } from 'formik';
+import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
-const PaymentBody = ({ setViewPage }: any) => {
+const PaymentBody = ({ setViewPage , isLoading}: any) => {
+  const formikContext = useFormikContext();
+  const {t} = useTranslation();
+  const {values, setFieldValue, submitForm , getFieldProps } = formikContext;
+  const handleSubmit = () => {
+    toast.info("Your Data in proccess")
+    
+    submitForm()
+  };
 
-  const [selectedValue, setSelectedValue] = useState(1);
+
+  const [selectedValue, setSelectedValue] = useState(getFieldProps('payment_method').value == 'online' ? 2 :3);
 
   const handleChange = (value: any) => {
-    setSelectedValue(value);
+    if(value ==3){
+      setSelectedValue(value);
+      setFieldValue('payment_method', 'cash_on_delivery')
+    }else{
+      setSelectedValue(value);
+      setFieldValue('payment_method', 'online')
+    }
+
+
   };
+
+
 
   type TRadioUi = { value: number; title: string, className?: string; children: React.ReactNode }
   const RadioUi = ({ value, children, title, className }: TRadioUi) => {
@@ -20,7 +43,7 @@ const PaymentBody = ({ setViewPage }: any) => {
           onChange={() => handleChange(value)}
 
         >
-          <span>{title}</span>
+          <span>{title} </span>
         </Radio>
         {selectedValue === value && <div className={className}>{children}  </div>}
               <Divider />
@@ -31,52 +54,36 @@ const PaymentBody = ({ setViewPage }: any) => {
   return (
     <div className="PaymentBody">
       <div className="PaymentBody_Left">
+        {t("Payment Method")}
+        <Divider/>
         <Space direction='vertical' >
-
-          <RadioUi className='credit_card' value={1} title="Pay with credit card" >
-              <div>
-              <Input name='username' placeholder="username" />
-              <Input placeholder="Basic usage" />
-           </div>
-           <div>
-                   <Input placeholder="Basic usage" />
-                 <Input placeholder="Basic usage" />
-           </div>
-           <div>
-            <Button block type='primary' > submite </Button>
-           </div>
+          <RadioUi   value={3} title={t("Cash On Delivery")}  >
+              <></>
           </RadioUi>
-          <RadioUi value={2} title="Pay with Paypal" className='with_Paypal' >
-            <div>
-                   <Input placeholder="Basic usage" />
-           </div>
-             <div>
-                 <Input placeholder="Basic usage" />
-           </div>
-           <div>
-            <Button block type='primary' > submite </Button>
-           </div>
-          </RadioUi>
-          <RadioUi value={3} title="Cash On Delivery" >
-            
+          <RadioUi   value={2} title={t("Online")} >
+              <></>
           </RadioUi>
         </Space>
        <div>
            <div className='Buttons_Tr'>
             <Button type="dashed" block onClick={()=>setViewPage(1)} >
-      back to Details
+      {t("back to Details")}
     </Button>
-         <Button onClick={()=>setViewPage(3)} className='primary' type="primary" block>
-      Review
+         <Button onClick={()=>{
+        
+          handleSubmit()
+          
+          }} className='primary' type="primary" block>
+       {isLoading ? t("Loading...") : t("Review") }
     </Button>
            </div>
     
 
            </div>
       </div>
-      <div className='PaymentBody_Right'>
+      {/* <div className='PaymentBody_Right'>
         <PaymentForm />
-      </div>
+      </div> */}
     </div>
   )
 }

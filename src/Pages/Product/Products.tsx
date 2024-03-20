@@ -7,7 +7,7 @@ import ProductPagination from './ProductPagination';
 
 const Products = () => {
 
-  const [style, setstyle] = useState(false)
+  const [style, setstyle] = useState(true)
   const Props = { style, setstyle }
   return (
     <Layout className='Products'>

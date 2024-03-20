@@ -21,15 +21,22 @@ const Translate: React.FC = () => {
     </div>
   ));
 
+
   
   const EnLanguageClickHandler = React.useCallback(() => {
-    changelanguage('en');
+    if(!(currentlanguage == 'en')){
+      changelanguage('en');
+      window.location.reload();
+    }
   }, [changelanguage]);
   
   const ArLanguageClickHandler = React.useCallback(() => {
-    changelanguage('ar');
-  }, [changelanguage]);
-  
+    if(!(currentlanguage == 'ar')){
+      changelanguage('ar');
+      window.location.reload();
+    }  }, [changelanguage]);
+
+ 
   const items: MenuProps['items'] = [
     {
       key: '1',
@@ -41,10 +48,24 @@ const Translate: React.FC = () => {
     },
   ];
 
+  let languageComponent;
+
+  switch (currentlanguage) {
+    case 'en':
+      languageComponent = <EnLanguage />;
+      break;
+    case 'ar':
+      languageComponent = <ArLanguage />;
+      break;
+      break;
+    default:
+      languageComponent = null; // You can set a default component or handle this case as needed
+  }
+
   return (
     <Space direction="vertical">
-      <Dropdown menu={{ items }} placement="top">
-        <Button disabled>{currentlanguage === 'en' ? <EnLanguage /> : <ArLanguage />}</Button>
+      <Dropdown menu={{ items }}  placement="top">
+        <Button disabled>{languageComponent}</Button>
       </Dropdown>
     </Space>
   );
